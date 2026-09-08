@@ -125,3 +125,29 @@ export const unsupportedCalendarMode: DatePickerCalendarProps = {
   // @ts-expect-error Selection mode is owned by the DatePicker.
   mode: "range",
 };
+
+import { Checkbox } from "@ziqx/react-comps";
+import { Checkbox as DirectCheckbox } from "@ziqx/react-comps/checkbox";
+import "@ziqx/react-comps/checkbox/styles.css";
+export const checkboxes = (
+  <>
+    <Checkbox
+      ref={inputRef}
+      label="Assigned to me"
+      defaultChecked
+      name="assigned"
+      size={20}
+      bgColor="#0B6E4F"
+      onChange={(event) => event.currentTarget.checked}
+    />
+    <DirectCheckbox
+      aria-label="Select all"
+      checked={false}
+      indeterminate
+      onChange={() => {}}
+      style={{ "--ziqx-checkbox-pulse-duration": "400ms" }}
+    />
+  </>
+);
+// @ts-expect-error Checkbox type is always checkbox.
+export const invalidCheckboxType = <Checkbox type="radio" />;

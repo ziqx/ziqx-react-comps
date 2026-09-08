@@ -1,0 +1,153 @@
+/* Checkbox motion adapted from Uiverse.io by bociKond. */
+.ziqx-checkbox {
+  --ziqx-checkbox-duration: 300ms;
+  --ziqx-checkbox-pulse-duration: 500ms;
+  display: inline-flex;
+  flex-shrink: 0;
+  align-items: center;
+  gap: 10px;
+  vertical-align: middle;
+  font: inherit;
+  user-select: none;
+}
+
+.ziqx-checkbox-control {
+  position: relative;
+  display: inline-block;
+  flex: 0 0 var(--ziqx-checkbox-size, 20px);
+  width: var(--ziqx-checkbox-size, 20px);
+  height: var(--ziqx-checkbox-size, 20px);
+  font-size: var(--ziqx-checkbox-size, 20px);
+}
+
+.ziqx-checkbox-input {
+  position: absolute;
+  z-index: 1;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  margin: 0;
+  opacity: 0;
+  cursor: pointer;
+}
+
+.ziqx-checkbox-mark {
+  display: block;
+  width: 100%;
+  height: 100%;
+  box-sizing: border-box;
+  border-radius: 50%;
+  background: var(--ziqx-checkbox-unchecked, #deddd9);
+  pointer-events: none;
+  transition:
+    background-color var(--ziqx-checkbox-duration) ease,
+    border-radius var(--ziqx-checkbox-duration) ease;
+}
+
+.ziqx-checkbox-input:checked + .ziqx-checkbox-mark,
+.ziqx-checkbox-input:indeterminate + .ziqx-checkbox-mark {
+  background: var(--ziqx-checkbox-bg, #1b1b1b);
+  border-radius: 0.3em;
+}
+
+.ziqx-checkbox-input:checked:not(:indeterminate) + .ziqx-checkbox-mark {
+  animation: ziqx-checkbox-pulse var(--ziqx-checkbox-pulse-duration) ease-in-out;
+}
+
+.ziqx-checkbox-mark::after {
+  content: "";
+  position: absolute;
+  display: none;
+  box-sizing: content-box;
+  left: 0.35em;
+  top: 0.19em;
+  width: 0.19em;
+  height: 0.38em;
+  border: solid var(--ziqx-checkbox-fg, #fff);
+  border-width: 0 0.12em 0.12em 0;
+  transform: rotate(45deg);
+}
+
+.ziqx-checkbox-input:checked + .ziqx-checkbox-mark::after {
+  display: block;
+}
+
+.ziqx-checkbox-input:indeterminate + .ziqx-checkbox-mark::after {
+  display: block;
+  top: 0.44em;
+  left: 0.25em;
+  width: 0.5em;
+  height: 0;
+  border-width: 0 0 0.12em;
+  transform: none;
+}
+
+.ziqx-checkbox-input:focus-visible + .ziqx-checkbox-mark {
+  outline: 2px solid var(--ziqx-checkbox-bg, #1b1b1b);
+  outline-offset: 3px;
+}
+
+.ziqx-checkbox-input:disabled {
+  cursor: not-allowed;
+}
+
+.ziqx-checkbox-input:disabled + .ziqx-checkbox-mark {
+  opacity: 0.45;
+  animation: none;
+}
+
+.ziqx-checkbox > label {
+  cursor: pointer;
+}
+
+.ziqx-checkbox:has(.ziqx-checkbox-input:disabled) > label {
+  cursor: not-allowed;
+  opacity: 0.45;
+}
+
+@keyframes ziqx-checkbox-pulse {
+  0% {
+    box-shadow: 0 0 0 0
+      color-mix(in srgb, var(--ziqx-checkbox-bg) 25%, transparent);
+    rotate: 20deg;
+  }
+  50% {
+    rotate: -20deg;
+  }
+  75% {
+    box-shadow: 0 0 0 6px
+      color-mix(in srgb, var(--ziqx-checkbox-bg) 10%, transparent);
+  }
+  100% {
+    box-shadow: 0 0 0 8px transparent;
+    rotate: 0deg;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .ziqx-checkbox-mark {
+    transition: none !important;
+    animation: none !important;
+  }
+}
+
+@media (forced-colors: active) {
+  .ziqx-checkbox-mark {
+    forced-color-adjust: none;
+    background: Canvas;
+    border: 1px solid ButtonText;
+  }
+  .ziqx-checkbox-input:is(:checked, :indeterminate) + .ziqx-checkbox-mark {
+    background: Highlight;
+    border-color: Highlight;
+  }
+  .ziqx-checkbox-mark::after {
+    border-color: HighlightText;
+  }
+  .ziqx-checkbox-input:focus-visible + .ziqx-checkbox-mark {
+    outline-color: Highlight;
+  }
+  .ziqx-checkbox-input:disabled + .ziqx-checkbox-mark {
+    border-color: GrayText;
+  }
+}

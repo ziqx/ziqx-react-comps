@@ -1,6 +1,6 @@
 # @ziqx/react-comps
 
-Shared, TSX-first React components for Ziqx products. Includes `Button`, `Input`, `Select` (also exported as `CleanSelect`), `DatePicker`, `Popover`, `DotsLoader`, `BeatLoader`, and `ZiqxLoader`. React and React DOM are peer dependencies. Selects and popovers use Radix; the calendar uses React DayPicker. No Tailwind, Next.js, icon library, or animation runtime is required.
+Shared, TSX-first React components for Ziqx products. Includes `Button`, `Input`, `Checkbox`, `Select` (also exported as `CleanSelect`), `DatePicker`, `Popover`, `DotsLoader`, `BeatLoader`, and `ZiqxLoader`. React and React DOM are peer dependencies. Selects and popovers use Radix; the calendar uses React DayPicker. No Tailwind, Next.js, icon library, or animation runtime is required.
 
 ## Use
 
@@ -74,7 +74,42 @@ The Tasks input geometry: 43px height, 10px corners, 12px horizontal padding, an
 - All native input props, including `value`, `defaultValue`, `onChange`, `name`, `required`, `readOnly`, `disabled`, and a forwarded input `ref`.
 - `className` and `style` target the native input; `containerClassName` targets the field wrapper. Without `label`, supply `aria-label` or an external label.
 
-The component does not mirror values into state and works with controlled inputs, uncontrolled inputs, native forms, and ref-based form libraries. Intended for text-like input types, including email, password, search, number, and URL; checkbox, radio, range, file controls, and date-picker UI are outside this release.
+The component does not mirror values into state and works with controlled inputs, uncontrolled inputs, native forms, and ref-based form libraries. Intended for text-like input types, including email, password, search, number, and URL; use `Checkbox` and `DatePicker` for those controls. Radio, range, and file controls are outside this release.
+
+## Checkbox
+
+Core’s gray-to-black checkbox with a white check and a brief circle-to-rounded-square pulse, adapted from Uiverse.io by bociKond. Native checkbox behavior supports keyboard activation, forms, external labels, and controlled or uncontrolled usage.
+
+```tsx
+import { Checkbox } from "@ziqx/react-comps/checkbox";
+import "@ziqx/react-comps/checkbox/styles.css";
+
+<Checkbox
+  label="Assigned to me"
+  checked={assignedToMe}
+  onChange={(event) => setAssignedToMe(event.currentTarget.checked)}
+/>;
+<Checkbox
+  aria-label="Select all tasks"
+  checked={allSelected}
+  indeterminate={someSelected && !allSelected}
+  onChange={toggleAll}
+/>;
+<Checkbox
+  label="Subscribe"
+  name="subscribe"
+  defaultChecked
+  bgColor="#0B6E4F"
+/>;
+```
+
+- `bgColor`, `fgColor`, `uncheckedColor`: default to `#1b1b1b`, `#ffffff`, and `#deddd9`.
+- `size`: visual size in pixels, default `20`. The transparent native input covers the full control.
+- `label`: optional visible label. Otherwise provide `aria-label`, `aria-labelledby`, or an external `<label>`.
+- `indeterminate`: mixed selection, useful for select-all. Update it alongside `checked`; it does not change the submitted value.
+- Native `checked`, `defaultChecked`, `onChange`, `disabled`, `required`, `name`, `value`, and `form` props work normally. The forwarded ref targets the native input.
+- `className` and `style` target the outer wrapper. `inputClassName` targets the input. CSS variables `--ziqx-checkbox-duration` and `--ziqx-checkbox-pulse-duration` customize motion.
+- Focus remains visible, disabled controls cannot be activated, and reduced-motion/forced-colors preferences are respected. Inside an existing `<label>`, omit the component’s `label` prop.
 
 ## Select / CleanSelect
 

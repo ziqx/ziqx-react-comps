@@ -31,3 +31,7 @@ SOFTWARE.
 ## DotsLoader
 
 The existing DotsLoader animation is adapted from Uiverse.io by Juanes200122. Its attribution is preserved in the CSS.
+
+## Checkbox
+
+The checkbox pulse and shape transition are adapted from the Uiverse.io checkbox by bociKond supplied with the component brief. Attribution is also preserved in `src/checkbox/styles.css`.

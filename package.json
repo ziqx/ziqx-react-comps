@@ -1,6 +1,6 @@
 {
   "name": "@ziqx/react-comps",
-  "version": "0.2.0",
+  "version": "0.3.0",
   "description": "TypeScript-first React components shared across Ziqx products.",
   "type": "module",
   "main": "./dist/index.js",
@@ -64,6 +64,14 @@
     "./popover/styles.css": {
       "types": "./dist/popover/styles.d.css.ts",
       "default": "./dist/popover/styles.css"
+    },
+    "./checkbox": {
+      "types": "./dist/checkbox/index.d.ts",
+      "default": "./dist/checkbox/index.js"
+    },
+    "./checkbox/styles.css": {
+      "types": "./dist/checkbox/styles.d.css.ts",
+      "default": "./dist/checkbox/styles.css"
     }
   },
   "files": [

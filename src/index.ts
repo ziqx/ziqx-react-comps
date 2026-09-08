@@ -3,6 +3,8 @@ export { Button } from "./button/index.js";
 export type { ButtonProps } from "./button/index.js";
 export { Input } from "./input/index.js";
 export type { InputProps } from "./input/index.js";
+export { Checkbox } from "./checkbox/index.js";
+export type { CheckboxProps } from "./checkbox/index.js";
 export * from "./loaders/index.js";
 export type {
   ColorProps,
