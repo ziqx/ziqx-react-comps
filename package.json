@@ -1,0 +1,83 @@
+{
+  "name": "@ziqx/react-comps",
+  "version": "0.1.0",
+  "description": "TypeScript-first React components shared across Ziqx products.",
+  "type": "module",
+  "main": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "style": "./dist/styles.css",
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "import": "./dist/index.js",
+      "default": "./dist/index.js"
+    },
+    "./button": {
+      "types": "./dist/button/index.d.ts",
+      "default": "./dist/button/index.js"
+    },
+    "./input": {
+      "types": "./dist/input/index.d.ts",
+      "default": "./dist/input/index.js"
+    },
+    "./loaders": {
+      "types": "./dist/loaders/index.d.ts",
+      "default": "./dist/loaders/index.js"
+    },
+    "./styles.css": {
+      "types": "./dist/styles.d.css.ts",
+      "default": "./dist/styles.css"
+    },
+    "./button/styles.css": {
+      "types": "./dist/button/styles.d.css.ts",
+      "default": "./dist/button/styles.css"
+    },
+    "./input/styles.css": {
+      "types": "./dist/input/styles.d.css.ts",
+      "default": "./dist/input/styles.css"
+    },
+    "./loaders/styles.css": {
+      "types": "./dist/loaders/styles.d.css.ts",
+      "default": "./dist/loaders/styles.css"
+    },
+    "./package.json": "./package.json"
+  },
+  "files": [
+    "dist",
+    "src",
+    "assets",
+    "README.md",
+    "LICENSE"
+  ],
+  "sideEffects": [
+    "**/*.css"
+  ],
+  "scripts": {
+    "build": "node scripts/build.mjs",
+    "typecheck": "tsc --noEmit",
+    "test": "npm run build && node --test tests/*.test.mjs",
+    "test:types": "tsc --noEmit --strict --skipLibCheck --module NodeNext --jsx react-jsx --noUncheckedSideEffectImports tests/consumer.tsx",
+    "format": "prettier --write .",
+    "format:check": "prettier --check .",
+    "check": "npm run typecheck && npm test && npm run test:types && npm run format:check",
+    "prepack": "npm run build"
+  },
+  "peerDependencies": {
+    "react": "^18.2.0 || ^19.0.0"
+  },
+  "devDependencies": {
+    "@types/react": "^19.0.0",
+    "prettier": "^3.0.0",
+    "react": "^19.0.0",
+    "react-dom": "^19.0.0",
+    "typescript": "^5.0.0"
+  },
+  "engines": {
+    "node": ">=20"
+  },
+  "publishConfig": {
+    "access": "public"
+  },
+  "author": "Fathah KA",
+  "license": "MIT"
+}

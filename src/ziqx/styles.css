@@ -1,0 +1,55 @@
+.ziqx-loader {
+  --ziqx-loader-cycle: 5200ms;
+  --ziqx-loader-wave-cycle: 2000ms;
+  --ziqx-loader-ease: cubic-bezier(0.22, 1, 0.36, 1);
+  --ziqx-loader-height: 48px;
+  display: inline-flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 16px;
+  color: var(--ziqx-loader-color, #11110f);
+  font-family: inherit;
+  vertical-align: middle;
+}
+
+.ziqx-loader[data-size="sm"] {
+  --ziqx-loader-height: 24px;
+  flex-direction: row;
+  gap: 10px;
+}
+
+.ziqx-loader[data-size="lg"] {
+  --ziqx-loader-height: 72px;
+  gap: 20px;
+}
+
+.ziqx-loader[data-tone="inverse"] {
+  color: #fff;
+}
+
+.ziqx-loader-mark {
+  display: block;
+  height: var(--ziqx-loader-height);
+  aspect-ratio: 720 / 919;
+  flex: none;
+}
+
+.ziqx-loader-label {
+  color: inherit;
+  opacity: 0.65;
+  font-size: 13px;
+  font-weight: 500;
+  line-height: 1.5;
+}
+
+@media (forced-colors: active) {
+  .ziqx-loader-mark {
+    forced-color-adjust: none;
+  }
+
+  .ziqx-loader {
+    color: CanvasText;
+    --ziqx-loader-accent: CanvasText;
+  }
+}

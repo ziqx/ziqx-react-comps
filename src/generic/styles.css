@@ -1,0 +1,31 @@
+.ziqx-dots-loader {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  vertical-align: middle;
+  color: var(--ziqx-loader-color, currentColor);
+}
+
+.ziqx-dots-loader[data-tone="inverse"] {
+  color: var(--ziqx-loader-color, #fff);
+}
+
+.ziqx-dots-loader-mark {
+  display: block;
+  flex: none;
+  width: var(--ziqx-loader-width, 60px);
+  aspect-ratio: 2;
+}
+
+.ziqx-dots-loader[data-size="sm"] .ziqx-dots-loader-mark {
+  width: var(--ziqx-loader-width, 36px);
+}
+
+.ziqx-dots-loader[data-size="lg"] .ziqx-dots-loader-mark {
+  width: var(--ziqx-loader-width, 84px);
+}
+
+.ziqx-dots-loader-label {
+  font: inherit;
+}

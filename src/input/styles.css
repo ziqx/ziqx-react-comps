@@ -1,0 +1,113 @@
+.ziqx-input-field {
+  --ziqx-bg: #fff;
+  --ziqx-fg: #11110f;
+  --ziqx-input-duration: 200ms;
+  display: grid;
+  gap: 7px;
+  min-width: 0;
+  color: var(--ziqx-fg);
+  font: inherit;
+}
+.ziqx-input-label {
+  font-size: 12px;
+  font-weight: 650;
+}
+.ziqx-input-control {
+  position: relative;
+  min-width: 0;
+  color: var(--ziqx-fg);
+}
+.ziqx-input {
+  box-sizing: border-box;
+  display: block;
+  width: 100%;
+  min-width: 0;
+  height: 43px;
+  padding: 0 12px;
+  border: 1px solid color-mix(in srgb, var(--ziqx-bg), var(--ziqx-fg) 16%);
+  border-radius: 10px;
+  background-color: var(--ziqx-bg);
+  color: var(--ziqx-fg);
+  font: inherit;
+  font-size: 13px;
+  box-shadow: inset 0 0 0 1px transparent;
+  transition:
+    border-color var(--ziqx-input-duration) ease-in-out,
+    box-shadow var(--ziqx-input-duration) ease-in-out,
+    background-color var(--ziqx-input-duration) ease-in-out;
+}
+.ziqx-input::placeholder {
+  color: color-mix(in srgb, var(--ziqx-fg) 36%, var(--ziqx-bg));
+  opacity: 1;
+}
+.ziqx-input:hover:not(:disabled) {
+  border-color: color-mix(in srgb, var(--ziqx-bg), var(--ziqx-fg) 26%);
+}
+.ziqx-input:focus {
+  border-color: var(--ziqx-fg);
+  outline: none;
+  /* Grow inward: no change to dimensions or text position. */
+  box-shadow: inset 0 0 0 1px var(--ziqx-fg);
+}
+.ziqx-input[aria-invalid]:not([aria-invalid="false"]) {
+  border-color: #dc2626;
+}
+.ziqx-input[aria-invalid]:not([aria-invalid="false"]):focus {
+  box-shadow: inset 0 0 0 1px #dc2626;
+}
+.ziqx-input:disabled {
+  cursor: not-allowed;
+  background-color: color-mix(in srgb, var(--ziqx-bg), var(--ziqx-fg) 5%);
+  color: color-mix(in srgb, var(--ziqx-fg) 50%, var(--ziqx-bg));
+}
+.ziqx-input[data-prefix="true"] {
+  padding-inline-start: 39px;
+}
+.ziqx-input[data-suffix="true"] {
+  padding-inline-end: 39px;
+}
+.ziqx-input-prefix,
+.ziqx-input-suffix {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  display: flex;
+  align-items: center;
+  pointer-events: none;
+}
+.ziqx-input-prefix {
+  inset-inline-start: 12px;
+}
+.ziqx-input-suffix {
+  inset-inline-end: 12px;
+}
+.ziqx-input-control[data-disabled="true"] {
+  color: color-mix(in srgb, var(--ziqx-fg) 50%, var(--ziqx-bg));
+}
+.ziqx-input-control .ziqx-component-icon {
+  width: 18px;
+  height: 18px;
+  color: inherit;
+}
+.ziqx-input-description {
+  color: color-mix(in srgb, var(--ziqx-fg) 65%, var(--ziqx-bg));
+  font-size: 12px;
+}
+.ziqx-input-error {
+  color: #dc2626;
+  font-size: 12px;
+}
+@media (prefers-reduced-motion: reduce) {
+  .ziqx-input {
+    transition: none;
+  }
+}
+@media (forced-colors: active) {
+  .ziqx-input:focus {
+    outline: 2px solid Highlight;
+    outline-offset: 2px;
+  }
+  .ziqx-input:disabled {
+    color: GrayText;
+  }
+}

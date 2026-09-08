@@ -1,0 +1,62 @@
+.ziqx-beat-loader {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  vertical-align: middle;
+  color: var(--ziqx-loader-color, currentColor);
+}
+.ziqx-beat-loader[data-tone="inverse"] {
+  color: var(--ziqx-loader-color, #fff);
+}
+.ziqx-beat-loader-mark {
+  display: inline-flex;
+  align-items: center;
+  justify-content: space-between;
+  width: var(--ziqx-loader-width, 42px);
+  height: 14px;
+}
+.ziqx-beat-loader[data-size="sm"] .ziqx-beat-loader-mark {
+  width: var(--ziqx-loader-width, 30px);
+}
+.ziqx-beat-loader[data-size="lg"] .ziqx-beat-loader-mark {
+  width: var(--ziqx-loader-width, 60px);
+  height: 20px;
+}
+.ziqx-beat-loader-mark > span {
+  display: block;
+  width: 24%;
+  aspect-ratio: 1;
+  border-radius: 50%;
+  background: currentColor;
+  animation: ziqx-beat var(--ziqx-loader-cycle, 900ms) infinite ease-in-out;
+}
+.ziqx-beat-loader-mark > span:nth-child(2) {
+  animation-delay: calc(var(--ziqx-loader-cycle, 900ms) / -3);
+}
+.ziqx-beat-loader-mark > span:nth-child(3) {
+  animation-delay: calc(var(--ziqx-loader-cycle, 900ms) * -2 / 3);
+}
+@keyframes ziqx-beat {
+  0%,
+  80%,
+  100% {
+    transform: scale(0.65);
+    opacity: 0.45;
+  }
+  40% {
+    transform: scale(1);
+    opacity: 1;
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  .ziqx-beat-loader-mark > span {
+    animation: none;
+  }
+}
+@media (forced-colors: active) {
+  .ziqx-beat-loader-mark {
+    forced-color-adjust: none;
+    color: CanvasText;
+  }
+}

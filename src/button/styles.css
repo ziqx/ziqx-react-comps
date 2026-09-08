@@ -1,0 +1,180 @@
+.ziqx-button {
+  --ziqx-bg: #101010;
+  --ziqx-fg: #fff;
+  --ziqx-button-duration: 150ms;
+  --ziqx-button-border: color-mix(in srgb, var(--ziqx-bg), var(--ziqx-fg) 3%);
+  box-sizing: border-box;
+  position: relative;
+  min-height: 36px;
+  padding: 0 14px;
+  border: 1px solid var(--ziqx-button-border);
+  border-radius: 9px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 9px;
+  font: inherit;
+  font-weight: 640;
+  font-size: 13px;
+  line-height: 1.4;
+  text-decoration: none;
+  white-space: nowrap;
+  cursor: pointer;
+  touch-action: manipulation;
+  color: var(--ziqx-fg);
+  background-color: var(--ziqx-bg);
+  background-image: linear-gradient(180deg, #ffffff12, #ffffff00 65%);
+  box-shadow:
+    inset 0 1px 0 #ffffff29,
+    inset 0 -1px 0 #0000004d,
+    0 2px 3px #0000001f;
+  transition:
+    transform var(--ziqx-button-duration) ease,
+    background-color var(--ziqx-button-duration) ease,
+    color var(--ziqx-button-duration) ease,
+    box-shadow var(--ziqx-button-duration) ease,
+    border-color var(--ziqx-button-duration) ease;
+}
+
+.ziqx-button[data-variant="secondary"] {
+  background-image: none;
+  background-color: color-mix(in srgb, var(--ziqx-bg), var(--ziqx-fg) 12%);
+  border-color: color-mix(in srgb, var(--ziqx-bg), var(--ziqx-fg) 24%);
+  box-shadow: inset 0 1px 0 #ffffff29;
+}
+
+.ziqx-button[data-variant="outline"],
+.ziqx-button[data-variant="ghost"] {
+  background: transparent;
+  box-shadow: none;
+  border-color: var(--ziqx-fg);
+}
+
+.ziqx-button[data-variant="ghost"] {
+  border-color: transparent;
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .ziqx-button:hover:not(:disabled):not([aria-disabled="true"]) {
+    transform: translateY(-1px);
+    background-color: color-mix(in srgb, var(--ziqx-bg), var(--ziqx-fg) 9%);
+    box-shadow:
+      inset 0 1px 0 #ffffff33,
+      inset 0 -1px 0 #0000004d,
+      0 3px 6px #00000026;
+  }
+  .ziqx-button[data-variant="secondary"]:hover:not(:disabled):not(
+      [aria-disabled="true"]
+    ) {
+    background-color: color-mix(in srgb, var(--ziqx-bg), var(--ziqx-fg) 20%);
+    box-shadow: inset 0 1px 0 #ffffff33;
+  }
+  .ziqx-button:is([data-variant="outline"], [data-variant="ghost"]):hover:not(
+      :disabled
+    ):not([aria-disabled="true"]) {
+    background-color: color-mix(in srgb, var(--ziqx-fg) 10%, transparent);
+    box-shadow: none;
+  }
+}
+
+.ziqx-button:active:not(:disabled):not([aria-disabled="true"]) {
+  transform: translateY(0);
+  background-color: color-mix(in srgb, var(--ziqx-bg), var(--ziqx-fg) 5%);
+  box-shadow:
+    inset 0 1px 3px #00000066,
+    0 1px 1px #00000014;
+}
+.ziqx-button:is([data-variant="outline"], [data-variant="ghost"]):active:not(
+    :disabled
+  ):not([aria-disabled="true"]) {
+  background-color: color-mix(in srgb, var(--ziqx-fg) 18%, transparent);
+  box-shadow: none;
+}
+.ziqx-button:focus-visible {
+  outline: 2px solid var(--ziqx-bg);
+  outline-offset: 3px;
+  box-shadow: 0 0 0 2px var(--ziqx-fg);
+}
+.ziqx-button:is(
+    [data-variant="outline"],
+    [data-variant="ghost"]
+  ):focus-visible {
+  outline-color: var(--ziqx-fg);
+}
+.ziqx-button:disabled:not([data-loading="true"]),
+.ziqx-button[aria-disabled="true"]:not([data-loading="true"]) {
+  color: color-mix(in srgb, var(--ziqx-fg) 55%, var(--ziqx-bg));
+  background-color: color-mix(in srgb, var(--ziqx-bg) 75%, var(--ziqx-fg));
+  background-image: none;
+  border-color: color-mix(in srgb, var(--ziqx-bg), var(--ziqx-fg) 25%);
+  box-shadow: none;
+  cursor: not-allowed;
+}
+.ziqx-button[data-loading="true"] {
+  cursor: wait;
+}
+.ziqx-button[data-full="true"] {
+  width: 100%;
+}
+.ziqx-button[data-size="compact"] {
+  min-height: 32px;
+  padding: 0 12px;
+  border-radius: 8px;
+  font-size: 12px;
+}
+.ziqx-button[data-size="icon"] {
+  width: 36px;
+  height: 36px;
+  padding: 0;
+}
+.ziqx-button-content {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: inherit;
+}
+.ziqx-button[data-loading="true"] .ziqx-button-content {
+  visibility: hidden;
+}
+.ziqx-button .ziqx-component-icon {
+  width: 18px;
+  height: 18px;
+  flex: none;
+  color: inherit;
+}
+.ziqx-button-loader {
+  position: absolute;
+  inset: 0;
+  display: grid;
+  place-items: center;
+  pointer-events: none;
+  color: inherit;
+}
+.ziqx-button .ziqx-dots-loader {
+  --ziqx-loader-width: 30px;
+}
+.ziqx-button[data-size="icon"] .ziqx-dots-loader {
+  --ziqx-loader-width: 24px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .ziqx-button {
+    transition: none;
+  }
+  .ziqx-button:hover:not(:disabled):not([aria-disabled="true"]) {
+    transform: none;
+  }
+}
+@media (forced-colors: active) {
+  .ziqx-button {
+    border-color: ButtonText;
+  }
+  .ziqx-button:focus-visible {
+    outline-color: Highlight;
+  }
+  .ziqx-button:disabled:not([data-loading="true"]),
+  .ziqx-button[aria-disabled="true"]:not([data-loading="true"]) {
+    color: GrayText;
+    border-color: GrayText;
+  }
+}
