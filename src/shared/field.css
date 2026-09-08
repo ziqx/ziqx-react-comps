@@ -1,0 +1,114 @@
+.ziqx-field {
+  position: relative;
+  display: grid;
+  gap: 7px;
+  min-width: 0;
+  font: inherit;
+  color: var(--ziqx-fg, #11110f);
+}
+.ziqx-field-label {
+  font-size: 12px;
+  font-weight: 650;
+}
+.ziqx-field-description {
+  font-size: 12px;
+  color: color-mix(in srgb, var(--ziqx-fg) 65%, var(--ziqx-bg));
+}
+.ziqx-field-error {
+  font-size: 12px;
+  color: #dc2626;
+}
+.ziqx-native-control {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  border: 0;
+  overflow: hidden;
+  clip-path: inset(50%);
+  white-space: nowrap;
+  pointer-events: none;
+}
+.ziqx-control-trigger {
+  box-sizing: border-box;
+  min-width: 0;
+  width: 100%;
+  height: 42px;
+  padding: 0 11px;
+  border: 1px solid color-mix(in srgb, var(--ziqx-bg), var(--ziqx-fg) 16%);
+  border-radius: 10px;
+  background: var(--ziqx-bg);
+  color: var(--ziqx-fg);
+  display: inline-flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 9px;
+  font: inherit;
+  font-size: 13px;
+  text-align: start;
+  cursor: pointer;
+  touch-action: manipulation;
+  box-shadow: inset 0 0 0 1px transparent;
+  transition:
+    border-color 200ms ease-in-out,
+    box-shadow 200ms ease-in-out,
+    background-color 200ms ease-in-out;
+}
+.ziqx-control-trigger:hover:not(:disabled) {
+  border-color: color-mix(in srgb, var(--ziqx-bg), var(--ziqx-fg) 26%);
+  background: color-mix(in srgb, var(--ziqx-bg), var(--ziqx-fg) 2%);
+}
+.ziqx-control-trigger:focus-visible {
+  border-color: var(--ziqx-fg);
+  outline: none;
+  box-shadow: inset 0 0 0 1px var(--ziqx-fg);
+}
+.ziqx-control-trigger[aria-invalid]:not([aria-invalid="false"]) {
+  border-color: #dc2626;
+}
+.ziqx-control-trigger[aria-invalid]:not([aria-invalid="false"]):focus-visible {
+  box-shadow: inset 0 0 0 1px #dc2626;
+}
+.ziqx-control-trigger:disabled {
+  cursor: not-allowed;
+  background: color-mix(in srgb, var(--ziqx-bg), var(--ziqx-fg) 5%);
+  color: color-mix(in srgb, var(--ziqx-fg) 50%, var(--ziqx-bg));
+}
+.ziqx-control-trigger[data-compact="true"] {
+  height: 32px;
+  padding-inline: 9px;
+  font-size: 12px;
+  border-radius: 8px;
+}
+.ziqx-control-trigger > span:first-child {
+  min-width: 0;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+.ziqx-control-icon {
+  width: 16px;
+  height: 16px;
+  flex: 0 0 16px;
+  display: inline-flex;
+  align-items: center;
+  color: inherit;
+}
+.ziqx-control-trigger:is([data-empty="true"], [data-placeholder]) {
+  color: color-mix(in srgb, var(--ziqx-fg) 60%, var(--ziqx-bg));
+}
+@media (prefers-reduced-motion: reduce) {
+  .ziqx-control-trigger {
+    transition: none;
+  }
+}
+@media (forced-colors: active) {
+  .ziqx-control-trigger:focus-visible {
+    outline: 2px solid Highlight;
+    outline-offset: 2px;
+  }
+  .ziqx-control-trigger:disabled {
+    color: GrayText;
+  }
+}

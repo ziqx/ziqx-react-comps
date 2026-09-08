@@ -1,6 +1,6 @@
 {
   "name": "@ziqx/react-comps",
-  "version": "0.1.0",
+  "version": "0.2.0",
   "description": "TypeScript-first React components shared across Ziqx products.",
   "type": "module",
   "main": "./dist/index.js",
@@ -40,14 +40,39 @@
       "types": "./dist/loaders/styles.d.css.ts",
       "default": "./dist/loaders/styles.css"
     },
-    "./package.json": "./package.json"
+    "./package.json": "./package.json",
+    "./select": {
+      "types": "./dist/select/index.d.ts",
+      "default": "./dist/select/index.js"
+    },
+    "./select/styles.css": {
+      "types": "./dist/select/styles.d.css.ts",
+      "default": "./dist/select/styles.css"
+    },
+    "./date-picker": {
+      "types": "./dist/date-picker/index.d.ts",
+      "default": "./dist/date-picker/index.js"
+    },
+    "./date-picker/styles.css": {
+      "types": "./dist/date-picker/styles.d.css.ts",
+      "default": "./dist/date-picker/styles.css"
+    },
+    "./popover": {
+      "types": "./dist/popover/index.d.ts",
+      "default": "./dist/popover/index.js"
+    },
+    "./popover/styles.css": {
+      "types": "./dist/popover/styles.d.css.ts",
+      "default": "./dist/popover/styles.css"
+    }
   },
   "files": [
     "dist",
     "src",
     "assets",
     "README.md",
-    "LICENSE"
+    "LICENSE",
+    "THIRD_PARTY_NOTICES.md"
   ],
   "sideEffects": [
     "**/*.css"
@@ -63,14 +88,16 @@
     "prepack": "npm run build"
   },
   "peerDependencies": {
-    "react": "^18.2.0 || ^19.0.0"
+    "react": "^18.2.0 || ^19.0.0",
+    "react-dom": "^18.2.0 || ^19.0.0"
   },
   "devDependencies": {
     "@types/react": "^19.0.0",
     "prettier": "^3.0.0",
     "react": "^19.0.0",
     "react-dom": "^19.0.0",
-    "typescript": "^5.0.0"
+    "typescript": "^5.0.0",
+    "postcss": "^8.5.0"
   },
   "engines": {
     "node": ">=20"
@@ -79,5 +106,10 @@
     "access": "public"
   },
   "author": "Fathah KA",
-  "license": "MIT"
+  "license": "MIT",
+  "dependencies": {
+    "@radix-ui/react-popover": "^1.1.23",
+    "@radix-ui/react-select": "^2.3.7",
+    "react-day-picker": "^10.0.1"
+  }
 }

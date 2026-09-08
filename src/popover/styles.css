@@ -1,0 +1,11 @@
+.ziqx-popover {
+  width: var(--ziqx-popover-width, 284px);
+  max-width: calc(100vw - 32px);
+  max-height: var(--radix-popover-content-available-height);
+  overflow: auto;
+  padding: 18px;
+  border-radius: 14px;
+  display: grid;
+  gap: 12px;
+  font-size: 13px;
+}

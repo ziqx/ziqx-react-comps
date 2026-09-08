@@ -58,3 +58,70 @@ export const consumer = (
 export const invalidIcon = <Button prefix={<Icon />} />;
 // @ts-expect-error restrict variant names.
 export const invalidVariant = <Button variant="danger" />;
+
+import {
+  Select,
+  CleanSelect,
+  DatePicker,
+  Popover,
+  PopoverClose,
+  type DatePickerCalendarProps,
+} from "@ziqx/react-comps";
+import { Select as SubpathSelect } from "@ziqx/react-comps/select";
+import { DatePicker as SubpathDatePicker } from "@ziqx/react-comps/date-picker";
+import { Popover as SubpathPopover } from "@ziqx/react-comps/popover";
+import "@ziqx/react-comps/select/styles.css";
+import "@ziqx/react-comps/date-picker/styles.css";
+import "@ziqx/react-comps/popover/styles.css";
+
+export const expandedConsumer = (
+  <>
+    <Select
+      label="Owner"
+      name="owner"
+      ref={buttonRef}
+      options={[
+        { value: "", label: "Unassigned" },
+        { value: "alice", label: "Alice", icon: <Icon /> },
+      ]}
+      onValueChange={(value) => value.toUpperCase()}
+    />
+    <CleanSelect
+      options={[]}
+      ariaLabel="Priority"
+      defaultValue=""
+      triggerProps={{ "aria-describedby": "help" }}
+      contentProps={{ side: "top" }}
+    />
+    <SubpathSelect options={[]} required form="task" />
+    <DatePicker
+      label="Due date"
+      ref={buttonRef}
+      name="due"
+      defaultValue="2026-09-08"
+      minDate="2026-01-01"
+      maxDate="2026-12-31"
+      calendarProps={{ weekStartsOn: 1, captionLayout: "dropdown" }}
+      disabledDates={{ dayOfWeek: [0, 6] }}
+    />
+    <SubpathDatePicker value="" onValueChange={(value) => value.length} />
+    <Popover
+      ref={createRef<HTMLDivElement>()}
+      trigger={<Button>Filters</Button>}
+      ariaLabel="Filters"
+      side="bottom"
+      onEscapeKeyDown={(event) => event.preventDefault()}
+    >
+      <PopoverClose asChild>
+        <Button>Done</Button>
+      </PopoverClose>
+    </Popover>
+    <SubpathPopover trigger={<button>Menu</button>} defaultOpen>
+      Content
+    </SubpathPopover>
+  </>
+);
+export const unsupportedCalendarMode: DatePickerCalendarProps = {
+  // @ts-expect-error Selection mode is owned by the DatePicker.
+  mode: "range",
+};

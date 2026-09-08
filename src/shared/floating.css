@@ -1,0 +1,60 @@
+/* Tasks dropdown motion, with Radix's collision-aware transform origin. */
+.ziqx-floating {
+  --ziqx-floating-open-duration: 250ms;
+  --ziqx-floating-close-duration: 150ms;
+  --ziqx-floating-ease: cubic-bezier(0.22, 1, 0.36, 1);
+  box-sizing: border-box;
+  z-index: var(--ziqx-floating-z-index, 100);
+  border: 1px solid color-mix(in srgb, var(--ziqx-bg), var(--ziqx-fg) 16%);
+  background: var(--ziqx-bg);
+  color: var(--ziqx-fg);
+  font: inherit;
+  box-shadow:
+    0 16px 42px #1b191529,
+    0 2px 8px #1b191512;
+  transform-origin: var(
+    --radix-select-content-transform-origin,
+    var(--radix-popover-content-transform-origin, center)
+  );
+  will-change: transform, opacity;
+}
+.ziqx-floating[data-state="open"] {
+  animation: ziqx-floating-in var(--ziqx-floating-open-duration)
+    var(--ziqx-floating-ease);
+}
+.ziqx-floating[data-state="closed"] {
+  pointer-events: none;
+  animation: ziqx-floating-out var(--ziqx-floating-close-duration)
+    var(--ziqx-floating-ease);
+}
+@keyframes ziqx-floating-in {
+  from {
+    opacity: 0;
+    transform: scale(0.97);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+@keyframes ziqx-floating-out {
+  from {
+    opacity: 1;
+    transform: scale(1);
+  }
+  to {
+    opacity: 0;
+    transform: scale(0.99);
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  .ziqx-floating {
+    animation: none !important;
+    will-change: auto;
+  }
+}
+@media (forced-colors: active) {
+  .ziqx-floating {
+    border-color: CanvasText;
+  }
+}

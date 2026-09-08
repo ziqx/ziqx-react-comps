@@ -1,0 +1,112 @@
+.ziqx-date-content {
+  max-width: calc(100vw - 24px);
+  max-height: var(--radix-popover-content-available-height);
+  overflow: auto;
+  padding: 12px;
+  border-radius: 14px;
+}
+.ziqx-date-content .rdp-root {
+  --rdp-accent-color: var(--ziqx-fg);
+  --rdp-accent-background-color: color-mix(
+    in srgb,
+    var(--ziqx-bg),
+    var(--ziqx-fg) 7%
+  );
+  --rdp-day-width: 34px;
+  --rdp-day-height: 34px;
+  --rdp-day_button-width: 32px;
+  --rdp-day_button-height: 32px;
+  --rdp-nav-height: 38px;
+  --rdp-nav_button-width: 32px;
+  --rdp-nav_button-height: 32px;
+  --rdp-weekday-opacity: 1;
+  --rdp-outside-opacity: 0.35;
+  margin: 0;
+  font-size: 12px;
+}
+.ziqx-date-content .rdp-month_caption {
+  padding-inline-start: 8px;
+  align-items: center;
+  font-size: 13px;
+  font-weight: 700;
+}
+.ziqx-date-content .rdp-button_previous,
+.ziqx-date-content .rdp-button_next {
+  border-radius: 8px;
+}
+.ziqx-date-content
+  :is(.rdp-button_previous, .rdp-button_next, .rdp-day_button):hover:not(
+    :disabled
+  ) {
+  background: color-mix(in srgb, var(--ziqx-bg), var(--ziqx-fg) 7%);
+}
+.ziqx-date-content .rdp-chevron {
+  width: 14px;
+  height: 14px;
+  fill: var(--ziqx-fg);
+}
+.ziqx-date-content .rdp-weekday {
+  padding: 6px 0;
+  color: color-mix(in srgb, var(--ziqx-fg) 55%, var(--ziqx-bg));
+  font-size: 10px;
+  font-weight: 650;
+}
+.ziqx-date-content .rdp-selected {
+  font-size: inherit;
+}
+.ziqx-date-content .rdp-selected .rdp-day_button {
+  border: 0;
+  background: var(--ziqx-fg);
+  color: var(--ziqx-bg);
+}
+.ziqx-date-content .rdp-today:not(.rdp-selected) .rdp-day_button {
+  color: var(--ziqx-fg);
+  font-weight: 800;
+  box-shadow: inset 0 0 0 1px
+    color-mix(in srgb, var(--ziqx-bg), var(--ziqx-fg) 25%);
+}
+.ziqx-date-content button:focus-visible {
+  outline: 2px solid var(--ziqx-fg);
+  outline-offset: 2px;
+}
+.ziqx-date-actions {
+  margin-top: 8px;
+  padding-top: 9px;
+  border-top: 1px solid color-mix(in srgb, var(--ziqx-bg), var(--ziqx-fg) 10%);
+  display: flex;
+  justify-content: space-between;
+  gap: 12px;
+}
+.ziqx-date-actions button {
+  min-height: 31px;
+  padding: 0 9px;
+  border: 0;
+  border-radius: 7px;
+  background: transparent;
+  color: var(--ziqx-fg);
+  font: inherit;
+  font-size: 11px;
+  font-weight: 650;
+  cursor: pointer;
+}
+.ziqx-date-actions button:hover:not(:disabled) {
+  background: color-mix(in srgb, var(--ziqx-bg), var(--ziqx-fg) 7%);
+}
+.ziqx-date-actions button:disabled {
+  cursor: not-allowed;
+  opacity: 0.45;
+}
+@media (prefers-reduced-motion: reduce) {
+  .ziqx-date-content .rdp-root * {
+    animation: none !important;
+    transition: none !important;
+  }
+}
+@media (forced-colors: active) {
+  .ziqx-date-content button:focus-visible {
+    outline-color: Highlight;
+  }
+  .ziqx-date-content .rdp-selected .rdp-day_button {
+    outline: 2px solid Highlight;
+  }
+}

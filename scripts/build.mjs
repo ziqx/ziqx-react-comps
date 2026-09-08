@@ -1,3 +1,4 @@
+import postcss from "postcss";
 import { execFileSync } from "node:child_process";
 import { mkdir, readFile, rm, writeFile } from "node:fs/promises";
 import { createRequire } from "node:module";
@@ -20,11 +21,45 @@ const loaders = [
   await read("ziqx/styles.css"),
   await read("ziqx/motion.css"),
 ].join("\n");
+// Scope the upstream calendar CSS so other calendars in consuming apps are unaffected.
+const calendarCSS = postcss.parse(
+  await readFile(require.resolve("react-day-picker/style.css"), "utf8"),
+);
+calendarCSS.walkRules((rule) => {
+  if (rule.parent.type === "atrule" && rule.parent.name.endsWith("keyframes"))
+    return;
+  rule.selectors = rule.selectors.map(
+    (selector) => `.ziqx-date-content ${selector}`,
+  );
+});
+calendarCSS.walkAtRules(/keyframes$/, (rule) => {
+  rule.params = `ziqx-${rule.params}`;
+});
+calendarCSS.walkDecls(/^animation/, (declaration) => {
+  declaration.value = declaration.value.replace(/\brdp-/g, "ziqx-rdp-");
+});
+const floating = await read("shared/floating.css");
+const field = await read("shared/field.css");
+const select = await read("select/styles.css");
+const datePicker = `${calendarCSS.toString()}\n${await read("date-picker/styles.css")}`;
+const popover = await read("popover/styles.css");
 for (const [directory, css] of Object.entries({
   button: `${button}\n${dots}`,
   input,
   loaders,
-  "": [button, input, loaders].join("\n"),
+  select: [field, floating, select].join("\n"),
+  "date-picker": [field, floating, datePicker].join("\n"),
+  popover: [floating, popover].join("\n"),
+  "": [
+    button,
+    input,
+    loaders,
+    field,
+    floating,
+    select,
+    datePicker,
+    popover,
+  ].join("\n"),
 })) {
   const target = new URL(directory ? `${directory}/` : "./", dist);
   await mkdir(target, { recursive: true });
