@@ -16,6 +16,7 @@ const dots = `${await read("generic/styles.css")}\n${await read("generic/motion.
 const button = await read("button/styles.css");
 const input = await read("input/styles.css");
 const checkbox = await read("checkbox/styles.css");
+const glossyContainer = await read("glossy-container/styles.css");
 const loaders = [
   dots,
   await read("loaders/beat.css"),
@@ -48,6 +49,7 @@ for (const [directory, css] of Object.entries({
   button: `${button}\n${dots}`,
   input,
   checkbox,
+  "glossy-container": glossyContainer,
   loaders,
   select: [field, floating, select].join("\n"),
   "date-picker": [field, floating, datePicker].join("\n"),
@@ -56,6 +58,7 @@ for (const [directory, css] of Object.entries({
     button,
     input,
     checkbox,
+    glossyContainer,
     loaders,
     field,
     floating,

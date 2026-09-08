@@ -1,6 +1,6 @@
 {
   "name": "@ziqx/react-comps",
-  "version": "0.3.0",
+  "version": "0.4.0",
   "description": "TypeScript-first React components shared across Ziqx products.",
   "type": "module",
   "main": "./dist/index.js",
@@ -72,6 +72,14 @@
     "./checkbox/styles.css": {
       "types": "./dist/checkbox/styles.d.css.ts",
       "default": "./dist/checkbox/styles.css"
+    },
+    "./glossy-container": {
+      "types": "./dist/glossy-container/index.d.ts",
+      "default": "./dist/glossy-container/index.js"
+    },
+    "./glossy-container/styles.css": {
+      "types": "./dist/glossy-container/styles.d.css.ts",
+      "default": "./dist/glossy-container/styles.css"
     }
   },
   "files": [

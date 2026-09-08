@@ -1,6 +1,6 @@
 # @ziqx/react-comps
 
-Shared, TSX-first React components for Ziqx products. Includes `Button`, `Input`, `Checkbox`, `Select` (also exported as `CleanSelect`), `DatePicker`, `Popover`, `DotsLoader`, `BeatLoader`, and `ZiqxLoader`. React and React DOM are peer dependencies. Selects and popovers use Radix; the calendar uses React DayPicker. No Tailwind, Next.js, icon library, or animation runtime is required.
+Shared, TSX-first React components for Ziqx products. Includes `Button`, `Input`, `Checkbox`, `GlossyContainer`, `Select` (also exported as `CleanSelect`), `DatePicker`, `Popover`, `DotsLoader`, `BeatLoader`, and `ZiqxLoader`. React and React DOM are peer dependencies. Selects and popovers use Radix; the calendar uses React DayPicker. No Tailwind, Next.js, icon library, or animation runtime is required.
 
 ## Use
 
@@ -110,6 +110,46 @@ import "@ziqx/react-comps/checkbox/styles.css";
 - Native `checked`, `defaultChecked`, `onChange`, `disabled`, `required`, `name`, `value`, and `form` props work normally. The forwarded ref targets the native input.
 - `className` and `style` target the outer wrapper. `inputClassName` targets the input. CSS variables `--ziqx-checkbox-duration` and `--ziqx-checkbox-pulse-duration` customize motion.
 - Focus remains visible, disabled controls cannot be activated, and reduced-motion/forced-colors preferences are respected. Inside an existing `<label>`, omit the component’s `label` prop.
+
+## GlossyContainer
+
+A common surface with the primary button and active-navigation finish: a subtle top gradient, inner highlight, darker lower edge, and soft shadow. Use it for cards, panels, navigation items, or custom controls. It does not impose a content layout, fixed dimensions, or clipping.
+
+```tsx
+import { GlossyContainer } from "@ziqx/react-comps/glossy-container";
+import "@ziqx/react-comps/glossy-container/styles.css";
+
+<GlossyContainer padding={24} radius={18}>
+  <h2>Project overview</h2>
+  <p>Any content can go here.</p>
+</GlossyContainer>;
+
+<GlossyContainer as="a" href="/tasks" aria-current="page" padding="12px 16px">
+  Tasks
+</GlossyContainer>;
+
+<GlossyContainer as="button" onClick={openSettings} padding="10px 16px">
+  Settings
+</GlossyContainer>;
+
+<GlossyContainer
+  as="section"
+  bgColor="#f5f3ed"
+  fgColor="#11110f"
+  style={{ display: "grid", gap: 16 }}
+>
+  <h2>Workspace</h2>
+  <p>A light surface using the same finish.</p>
+</GlossyContainer>;
+```
+
+- `as`: element or ref-forwarding React component, defaults to `div`. Native props, handlers, children, and the correctly typed ref pass through. Native buttons default to `type="button"`; explicit `type="submit"` works normally.
+- `bgColor`, `fgColor`: defaults `#101010` / `#ffffff`. Border and interactive colors derive from this pair.
+- `padding`, `radius`: defaults `16` / `12`. Numbers mean pixels; CSS lengths and padding shorthands are supported.
+- `interactive`: visual hover/pressed feedback, on by default for native `a` and `button`. For a custom router Link use `as={Link} interactive`. It does not add roles, keyboard handlers, or focusability to a plain container; use a semantic link/button for actions.
+- `className` and `style` target the rendered element. Use them for flex/grid, gap, width, or positioning. Namespaced CSS variables include `--ziqx-glossy-bg`, `--ziqx-glossy-fg`, `--ziqx-glossy-padding`, `--ziqx-glossy-radius`, and `--ziqx-glossy-duration`.
+- Native disabled buttons cannot be activated. `aria-disabled` provides styling only; the consuming link/custom component must prevent its own activation when needed. Focus-visible, reduced-motion, and forced-colors states are included.
+- In Next.js, import the standalone stylesheet in the root layout (`import "@ziqx/react-comps/glossy-container/styles.css"`), like other package CSS. The combined `@ziqx/react-comps/styles.css` also includes it.
 
 ## Select / CleanSelect
 

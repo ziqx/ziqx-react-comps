@@ -5,6 +5,8 @@ export { Input } from "./input/index.js";
 export type { InputProps } from "./input/index.js";
 export { Checkbox } from "./checkbox/index.js";
 export type { CheckboxProps } from "./checkbox/index.js";
+export { GlossyContainer } from "./glossy-container/index.js";
+export type { GlossyContainerProps } from "./glossy-container/index.js";
 export * from "./loaders/index.js";
 export type {
   ColorProps,

@@ -151,3 +151,49 @@ export const checkboxes = (
 );
 // @ts-expect-error Checkbox type is always checkbox.
 export const invalidCheckboxType = <Checkbox type="radio" />;
+
+import { GlossyContainer } from "@ziqx/react-comps";
+import { GlossyContainer as DirectGlossyContainer } from "@ziqx/react-comps/glossy-container";
+import "@ziqx/react-comps/glossy-container/styles.css";
+export const glossyContainers = (
+  <>
+    <GlossyContainer
+      ref={createRef<HTMLDivElement>()}
+      padding={24}
+      radius="1rem"
+      bgColor="#f5f3ed"
+      fgColor="#111"
+      style={{ display: "grid", gap: 8 }}
+    >
+      Card
+    </GlossyContainer>
+    <DirectGlossyContainer
+      as="button"
+      ref={buttonRef}
+      disabled
+      onClick={(event) => event.currentTarget.disabled}
+    >
+      Action
+    </DirectGlossyContainer>
+    <GlossyContainer
+      as="a"
+      href="/tasks"
+      ref={createRef<HTMLAnchorElement>()}
+      aria-current="page"
+      onClick={(event) => event.currentTarget.href}
+    >
+      Tasks
+    </GlossyContainer>
+    <GlossyContainer as="section" aria-label="Summary" padding="12px 24px">
+      Summary
+    </GlossyContainer>
+  </>
+);
+// @ts-expect-error Default div does not accept href.
+export const invalidGlossyHref = <GlossyContainer href="/tasks" />;
+// @ts-expect-error Native button requires a button ref.
+export const invalidGlossyRef = <GlossyContainer as="button" ref={inputRef} />;
+export const invalidGlossyButton = (
+  // @ts-expect-error Native button does not accept anchor-only attributes.
+  <GlossyContainer as="button" href="/tasks" />
+);
